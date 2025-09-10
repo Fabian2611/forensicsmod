@@ -20,8 +20,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.SWAB_KIT);
         simpleItem(ModItems.DEVELOPING_SWAB_KIT);
         simpleItem(ModItems.DEVELOPED_SWAB_KIT);
-        simpleItem(ModItems.FAILED_SWAB_KIT);
-        simpleItem(ModItems.FORENSIC_GLOVES);
     }
 
     @SuppressWarnings("removal")

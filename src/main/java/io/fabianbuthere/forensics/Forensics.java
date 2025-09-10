@@ -2,6 +2,7 @@ package io.fabianbuthere.forensics;
 
 import com.mojang.logging.LogUtils;
 import io.fabianbuthere.forensics.block.ModBlocks;
+import io.fabianbuthere.forensics.block.entity.ModBlockEntities;
 import io.fabianbuthere.forensics.item.ModCreativeModeTabs;
 import io.fabianbuthere.forensics.item.ModItems;
 import io.fabianbuthere.forensics.screen.DevelopingStationScreen;
@@ -25,6 +26,7 @@ public class Forensics
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
 
         ModCreativeModeTabs.register(modEventBus);
@@ -42,8 +44,6 @@ public class Forensics
 
     private static void onClientSetup(final FMLClientSetupEvent event)
     {
-        event.enqueueWork(() -> {
-            MenuScreens.register(ModMenuTypes.DEVELOPING_STATION_MENU.get(), DevelopingStationScreen::new);
-        });
+        event.enqueueWork(() -> MenuScreens.register(ModMenuTypes.DEVELOPING_STATION_MENU.get(), DevelopingStationScreen::new));
     }
 }

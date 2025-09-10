@@ -197,7 +197,7 @@ public class DevelopingStationBlockEntity extends BlockEntity implements MenuPro
         this.itemHandler.extractItem(0, 1, false);
         this.itemHandler.extractItem(1, 1, false);
 
-        this.itemHandler.setStackInSlot(2, new ItemStack(result.getItem()));
+        this.itemHandler.setStackInSlot(2, result);
     }
 
     private boolean hasRecipe() {

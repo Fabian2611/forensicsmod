@@ -47,12 +47,12 @@ public class DevelopingStationMenu extends AbstractContainerMenu {
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(iItemHandler -> {
             // Developing slot (filtered)
-            this.addSlot(new FilterSlot(new SlotItemHandler(iItemHandler, 0, DEVELOPING_SLOT_X, DEVELOPING_SLOT_Y).container,
-                    0, DEVELOPING_SLOT_X, DEVELOPING_SLOT_Y, DevelopingStationBlockEntity.getDevelopingSlotItems()));
+            this.addSlot(new FilterSlot(iItemHandler, 0, DEVELOPING_SLOT_X, DEVELOPING_SLOT_Y,
+                    DevelopingStationBlockEntity.getDevelopingSlotItems()));
 
             // Chemical slot (filtered)
-            this.addSlot(new FilterSlot(new SlotItemHandler(iItemHandler, 1, CHEMICAL_SLOT_X, CHEMICAL_SLOT_Y).container,
-                    1, CHEMICAL_SLOT_X, CHEMICAL_SLOT_Y, DevelopingStationBlockEntity.getChemicalSlotItems()));
+            this.addSlot(new FilterSlot(iItemHandler, 1, CHEMICAL_SLOT_X, CHEMICAL_SLOT_Y,
+                    DevelopingStationBlockEntity.getChemicalSlotItems()));
 
             // Output slot
             this.addSlot(new SlotItemHandler(iItemHandler, 2, OUTPUT_SLOT_X, OUTPUT_SLOT_Y) {

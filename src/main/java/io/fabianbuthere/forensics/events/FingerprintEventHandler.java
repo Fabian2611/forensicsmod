@@ -19,7 +19,9 @@ public class FingerprintEventHandler {
     private static boolean isPlayerProtectedFromFingerprinting(Player player) {
         if (player.isSpectator()) return true;
         ItemStack offhand = player.getItemBySlot(EquipmentSlot.OFFHAND);
-        return offhand.is(ModItems.FORENSIC_GLOVES.get()) || player.getMainHandItem().is(ModItems.SWAB_KIT.get());
+        ItemStack mainhand = player.getMainHandItem();
+        return offhand.is(ModItems.FORENSIC_GLOVES.get()) || offhand.is(ModItems.BLACK_GLOVES.get()) ||
+                mainhand.is(ModItems.SWAB_KIT.get()) || mainhand.is(ModItems.FORENSIC_GLOVES.get()) || mainhand.is(ModItems.BLACK_GLOVES.get());
     }
 
     private static boolean isPlayerProtectedFromFootprinting(Player player) {

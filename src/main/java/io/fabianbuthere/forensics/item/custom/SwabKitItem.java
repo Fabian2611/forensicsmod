@@ -10,6 +10,7 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import java.util.UUID;
@@ -41,7 +42,7 @@ public class SwabKitItem extends Item {
 
             UUID fingerprint = FingerprintHelper.getFingerprint(level, pContext.getClickedPos());
             if (fingerprint == null) {
-                ItemStack newItem = new ItemStack(ModItems.FAILED_SWAB_KIT.get());
+                ItemStack newItem = new ItemStack(Items.PAPER);
                 player.setItemInHand(hand, newItem);
                 return InteractionResult.SUCCESS;
             }

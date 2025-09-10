@@ -20,10 +20,10 @@ public class ModItems {
     public static final RegistryObject<Item> DEVELOPED_SWAB_KIT = ITEMS.register("developed_swab_kit",
             () -> new Item(new Item.Properties().stacksTo(1)));
 
-    public static final RegistryObject<Item> FAILED_SWAB_KIT = ITEMS.register("failed_swab_kit",
+    public static final RegistryObject<Item> FORENSIC_GLOVES = ITEMS.register("forensic_gloves",
             () -> new Item(new Item.Properties().stacksTo(1)));
 
-    public static final RegistryObject<Item> FORENSIC_GLOVES = ITEMS.register("forensic_gloves",
+    public static final RegistryObject<Item> BLACK_GLOVES = ITEMS.register("black_gloves",
             () -> new Item(new Item.Properties().stacksTo(1)));
 
     public static void register(IEventBus eventBus) {

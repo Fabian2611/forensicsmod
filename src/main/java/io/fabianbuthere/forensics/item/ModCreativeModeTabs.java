@@ -20,6 +20,7 @@ public class ModCreativeModeTabs {
             .displayItems((pParameters, pOutput) -> {
                 pOutput.accept(ModItems.SWAB_KIT.get());
                 pOutput.accept(ModItems.FORENSIC_GLOVES.get());
+                pOutput.accept(ModItems.BLACK_GLOVES.get());
 
                 pOutput.accept(ModBlocks.DEVELOPING_STATION.get().asItem());
             })

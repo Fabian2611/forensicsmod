@@ -1,17 +1,17 @@
 package io.fabianbuthere.forensics.util;
 
-import net.minecraft.world.Container;
-import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.SlotItemHandler;
 
 import java.util.Set;
 
-public class FilterSlot extends Slot {
+public class FilterSlot extends SlotItemHandler {
     private final Set<Item> allowedItems;
 
-    public FilterSlot(Container container, int slot, int x, int y, Set<Item> allowedItems) {
-        super(container, slot, x, y);
+    public FilterSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition, Set<Item> allowedItems) {
+        super(itemHandler, index, xPosition, yPosition);
         this.allowedItems = allowedItems;
     }
 
