@@ -88,8 +88,16 @@ public class WorldFingerprintData extends SavedData {
         setDirty();
     }
 
+    private UUID uuidToFootprintUUID(UUID playerUUID) {
+        long msb = playerUUID.getMostSignificantBits();
+        long lsb = playerUUID.getLeastSignificantBits();
+        msb = ~msb;
+        lsb = ~lsb;
+        return new UUID(msb, lsb);
+    }
+
     public void addFootprint(BlockPos pos, UUID playerUUID) {
-        footprints.put(pos, playerUUID);
+        footprints.put(pos, uuidToFootprintUUID(playerUUID));
         setDirty();
     }
 

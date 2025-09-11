@@ -58,7 +58,7 @@ public class DevelopingStationBlock extends BaseEntityBlock {
             if (entity instanceof DevelopingStationBlockEntity) {
                 NetworkHooks.openScreen(((ServerPlayer) pPlayer), (DevelopingStationBlockEntity) entity, pPos);
             } else {
-                throw new IllegalStateException("Our Container provider is missing!");
+                throw new IllegalStateException("Container provider is missing!");
             }
         }
 

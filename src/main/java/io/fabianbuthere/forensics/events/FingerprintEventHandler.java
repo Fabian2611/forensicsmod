@@ -25,7 +25,7 @@ public class FingerprintEventHandler {
     }
 
     private static boolean isPlayerProtectedFromFootprinting(Player player) {
-        if (player.isSpectator()) return true;
+        if (player.isSpectator() || !player.onGround()) return true;
         return !player.getItemBySlot(EquipmentSlot.FEET).isEmpty();
     }
 

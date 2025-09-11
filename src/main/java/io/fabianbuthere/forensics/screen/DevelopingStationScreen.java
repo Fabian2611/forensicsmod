@@ -40,7 +40,8 @@ public class DevelopingStationScreen extends AbstractContainerScreen<DevelopingS
 
     private void renderProgressArrow(GuiGraphics guiGraphics, int x, int y) {
         if(menu.isCrafting()) {
-            guiGraphics.blit(TEXTURE, x + 105, y + 33, 176, 0, 8, menu.getScaledProgress());
+            int progressWidth = menu.getScaledProgress();
+            guiGraphics.blit(TEXTURE, x + 67, y + 34, 176, 0, progressWidth, 17);
         }
     }
 

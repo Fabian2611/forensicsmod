@@ -53,11 +53,13 @@ public class DevelopingStationBlockEntity extends BlockEntity implements MenuPro
     };
 
     private static final Set<Item> DEVELOPING_SLOT_ITEMS = Set.of(
-            ModItems.DEVELOPING_SWAB_KIT.get()
+            ModItems.DEVELOPING_SWAB_KIT.get(),
+            ModItems.DEVELOPING_FOOTPRINT_MOULD.get()
     );
 
     private static final Set<Item> CHEMICAL_SLOT_ITEMS = Set.of(
-            Items.GLOWSTONE_DUST
+            Items.GLOWSTONE_DUST,
+            Items.WATER_BUCKET
     );
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
@@ -167,7 +169,7 @@ public class DevelopingStationBlockEntity extends BlockEntity implements MenuPro
         progress = 0;
     }
 
-    private void craftItem() {
+    private ItemStack getSwabResult() {
         ItemStack result = new ItemStack(ModItems.DEVELOPED_SWAB_KIT.get(), 1);
 
         CompoundTag swabTag = this.itemHandler.getStackInSlot(0).getTag();
@@ -179,7 +181,12 @@ public class DevelopingStationBlockEntity extends BlockEntity implements MenuPro
 
             CompoundTag display = new CompoundTag();
             ListTag lore = new ListTag();
-            lore.add(StringTag.valueOf("{\"text\":\"Contains fingerprint data.\",\"color\":\"dark_purple\",\"italic\":false}"));
+            lore.add(StringTag.valueOf("{\"text\":\"Fingerprint at (%s, %s, %s) is @%s.\",\"color\":\"dark_purple\",\"italic\":false}".formatted(
+                    swabTag.getCompound("position").getInt("x"),
+                    swabTag.getCompound("position").getInt("y"),
+                    swabTag.getCompound("position").getInt("z"),
+                    swabTag.getUUID("fingerprint").toString()
+            )));
             display.put("Lore", lore);
             resultTag.put("display", display);
 
@@ -194,6 +201,47 @@ public class DevelopingStationBlockEntity extends BlockEntity implements MenuPro
             result.setTag(resultTag);
         }
 
+        return result;
+    }
+
+    private ItemStack getMouldResult() {
+        ItemStack result = new ItemStack(ModItems.DEVELOPED_FOOTPRINT_MOULD.get(), 1);
+
+        CompoundTag mouldTag = this.itemHandler.getStackInSlot(0).getTag();
+        CompoundTag resultTag = result.getOrCreateTag();
+
+        if (mouldTag != null && mouldTag.contains("footprint") && mouldTag.contains("position")) {
+            resultTag.putUUID("footprint", mouldTag.getUUID("footprint"));
+            resultTag.put("position", mouldTag.getCompound("position"));
+
+            CompoundTag display = new CompoundTag();
+            ListTag lore = new ListTag();
+            lore.add(StringTag.valueOf("{\"text\":\"Footprint at (%s, %s, %s) is @%s.\",\"color\":\"dark_purple\",\"italic\":false}".formatted(
+                    mouldTag.getCompound("position").getInt("x"),
+                    mouldTag.getCompound("position").getInt("y"),
+                    mouldTag.getCompound("position").getInt("z"),
+                    mouldTag.getUUID("footprint").toString()
+            )));
+            display.put("Lore", lore);
+            resultTag.put("display", display);
+
+            result.setTag(resultTag);
+        } else {
+            CompoundTag display = new CompoundTag();
+            ListTag lore = new ListTag();
+            lore.add(StringTag.valueOf("{\"text\":\"Contains no valid footprint data!\",\"color\":\"red\",\"italic\":false,\"bold\":true}"));
+            display.put("Lore", lore);
+            resultTag.put("display", display);
+
+            result.setTag(resultTag);
+        }
+
+        return result;
+    }
+
+    private void craftItem() {
+        ItemStack result = this.itemHandler.getStackInSlot(0).is(ModItems.DEVELOPING_SWAB_KIT.get()) ? getSwabResult() : getMouldResult();
+
         this.itemHandler.extractItem(0, 1, false);
         this.itemHandler.extractItem(1, 1, false);
 
@@ -201,10 +249,14 @@ public class DevelopingStationBlockEntity extends BlockEntity implements MenuPro
     }
 
     private boolean hasRecipe() {
-        boolean hasDevelopingKit = this.itemHandler.getStackInSlot(0).getItem() == ModItems.DEVELOPING_SWAB_KIT.get();
-        boolean hasChemical = this.itemHandler.getStackInSlot(1).is(Items.GLOWSTONE_DUST);
+        boolean hasDevelopingKit = this.itemHandler.getStackInSlot(0).is(ModItems.DEVELOPING_SWAB_KIT.get()) ||
+                this.itemHandler.getStackInSlot(0).is(ModItems.DEVELOPING_FOOTPRINT_MOULD.get());
 
-        return hasDevelopingKit && hasChemical && canInsertAmountIntoOutputSlot(1) && canInsertItemIntoOutputSlot(new ItemStack(ModItems.SWAB_KIT.get()));
+        boolean hasChemical = this.itemHandler.getStackInSlot(1).is(Items.GLOWSTONE_DUST) ||
+                this.itemHandler.getStackInSlot(1).is(Items.WATER_BUCKET);
+
+        return hasDevelopingKit && hasChemical && canInsertAmountIntoOutputSlot(1) &&
+                (canInsertItemIntoOutputSlot(new ItemStack(ModItems.SWAB_KIT.get())) || canInsertItemIntoOutputSlot(new ItemStack(ModItems.FOOTPRINT_MOULD.get())));
     }
 
     private boolean canInsertItemIntoOutputSlot(ItemStack result) {

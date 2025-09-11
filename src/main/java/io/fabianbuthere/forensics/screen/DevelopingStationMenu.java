@@ -19,12 +19,12 @@ public class DevelopingStationMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     // PSF constants for slot positions
-    private static final int DEVELOPING_SLOT_X = 56;
-    private static final int DEVELOPING_SLOT_Y = 35;
-    private static final int CHEMICAL_SLOT_X = 80;
-    private static final int CHEMICAL_SLOT_Y = 35;
-    private static final int OUTPUT_SLOT_X = 124;
-    private static final int OUTPUT_SLOT_Y = 35;
+    private static final int DEVELOPING_SLOT_X = 32;
+    private static final int DEVELOPING_SLOT_Y = 21;
+    private static final int CHEMICAL_SLOT_X = 32;
+    private static final int CHEMICAL_SLOT_Y = 45;
+    private static final int OUTPUT_SLOT_X = 109;
+    private static final int OUTPUT_SLOT_Y = 34;
 
     // Player inventory positions
     private static final int PLAYER_INVENTORY_START_X = 8;
@@ -72,8 +72,8 @@ public class DevelopingStationMenu extends AbstractContainerMenu {
 
     public int getScaledProgress() {
         int progress = this.data.get(0);
-        int maxProgress = this.data.get(1);  // Max Progress
-        int progressArrowSize = 26; // This is the height in pixels of our arrow
+        int maxProgress = this.data.get(1);
+        int progressArrowSize = 24;
 
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }

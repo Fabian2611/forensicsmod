@@ -1,3 +1,9 @@
 {
-  "creativetab.forensics_tab": "Forensics"
+  "creativetab.forensics_tab": "Forensics",
+  "block.forensics.developing_station": "Entwicklungsstation",
+  "item.forensics.swab_kit": "Abstrichset",
+  "item.forensics.developing_swab_kit": "Unentwickeltes Abstrichset",
+  "item.forensics.developed_swab_kit": "Entwickeltes Abstrichset",
+  "item.forensics.black_gloves": "Schwarze Handschuhe",
+  "item.forensics.forensic_gloves": "Pflegehandschuhe"
 }

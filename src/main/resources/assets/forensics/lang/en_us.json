@@ -1,3 +1,12 @@
 {
-  "creativetab.forensics_tab": "Forensics"
+  "creativetab.forensics_tab": "Forensics",
+  "block.forensics.developing_station": "Swab Developing Station",
+  "item.forensics.swab_kit": "Swab Kit",
+  "item.forensics.developing_swab_kit": "Undeveloped Swab Kit",
+  "item.forensics.developed_swab_kit": "Developed Swab Kit",
+  "item.forensics.footprint_mould": "Footprint Mould",
+  "item.forensics.developing_footprint_mould": "Undeveloped Footprint Mould",
+  "item.forensics.developed_footprint_mould": "Developed Footprint Mould",
+  "item.forensics.black_gloves": "Black Gloves",
+  "item.forensics.forensic_gloves": "Forensic Gloves"
 }

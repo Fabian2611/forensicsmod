@@ -19,10 +19,11 @@ public class ModCreativeModeTabs {
             .title(Component.translatable("creativetab.forensics_tab"))
             .displayItems((pParameters, pOutput) -> {
                 pOutput.accept(ModItems.SWAB_KIT.get());
+                pOutput.accept(ModItems.FOOTPRINT_MOULD.get());
                 pOutput.accept(ModItems.FORENSIC_GLOVES.get());
                 pOutput.accept(ModItems.BLACK_GLOVES.get());
 
-                pOutput.accept(ModBlocks.DEVELOPING_STATION.get().asItem());
+                pOutput.accept(ModBlocks.DEVELOPING_STATION.get());
             })
         .build());
 

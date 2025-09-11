@@ -1,6 +1,7 @@
 package io.fabianbuthere.forensics.item;
 
 import io.fabianbuthere.forensics.Forensics;
+import io.fabianbuthere.forensics.item.custom.MouldItem;
 import io.fabianbuthere.forensics.item.custom.SwabKitItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -18,6 +19,15 @@ public class ModItems {
             () -> new Item(new Item.Properties().stacksTo(1)));
 
     public static final RegistryObject<Item> DEVELOPED_SWAB_KIT = ITEMS.register("developed_swab_kit",
+            () -> new Item(new Item.Properties().stacksTo(1)));
+
+    public static final RegistryObject<Item> FOOTPRINT_MOULD = ITEMS.register("footprint_mould",
+            () -> new MouldItem(new Item.Properties().stacksTo(1)));
+
+    public static final RegistryObject<Item> DEVELOPING_FOOTPRINT_MOULD = ITEMS.register("developing_footprint_mould",
+            () -> new Item(new Item.Properties().stacksTo(1)));
+
+    public static final RegistryObject<Item> DEVELOPED_FOOTPRINT_MOULD = ITEMS.register("developed_footprint_mould",
             () -> new Item(new Item.Properties().stacksTo(1)));
 
     public static final RegistryObject<Item> FORENSIC_GLOVES = ITEMS.register("forensic_gloves",
